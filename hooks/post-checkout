@@ -1,16 +1,20 @@
 #!/bin/bash
+set -x
 
 # Load common tools
 PLUGIN_ROOT="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/null && pwd )"
+echo "Inluding common.sh"
 source "${PLUGIN_ROOT}/lib/common.sh"
 
 
 
 # The external repository that we will clone.
 # Example value: https://github.com/JuliaCI/julia-buildkite
+echo "Getting REPO_URL"
 INPUT_REPO_URL="$(get_meta_env_value REPO_URL)"
 
 # Folder the external repository will be cloned into, defaults to `.buildkite`
+echo "Getting FOLDER"
 INPUT_FOLDER="$(get_meta_env_value FOLDER .buildkite)"
 
 # Version of the external repository that we're going to clone

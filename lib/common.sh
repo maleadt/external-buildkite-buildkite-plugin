@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -Eeuo pipefail
+set -x
 
 # Helper function to kill execution when something goes wrong
 function die() {
