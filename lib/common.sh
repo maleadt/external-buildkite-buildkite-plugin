@@ -1,11 +1,6 @@
 #!/bin/bash
 
 set -Eeuo pipefail
-set -x
-
-bash --version
-echo "Shell: $SHELL"
-ps -p $$
 
 # Helper function to kill execution when something goes wrong
 function die() {
@@ -81,7 +76,6 @@ function resolve_version() {
 # to any name passed in.
 function get_meta_env_value() {
     NAME="${1}"
-    echo "Name: $NAME"
     if [[ "${NAME}" != "BUILDKITE_"* ]]; then
         NAME="BUILDKITE_PLUGIN_EXTERNAL_BUILDKITE_${NAME}"
     fi
@@ -93,7 +87,7 @@ function get_meta_env_value() {
     fi
 
     # If this name is already defined in the environment, use that value
-    if [[ -v ${NAME} ]]; then
+    if [[ -n "${!NAME+x}" ]]; then
         echo -n "${!NAME}"
         return
     fi
@@ -106,5 +100,3 @@ function get_meta_env_value() {
         die "No value supplied for ${NAME}"
     fi
 }
-
-echo "include done"
