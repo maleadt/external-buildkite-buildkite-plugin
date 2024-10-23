@@ -88,7 +88,7 @@ function get_meta_env_value() {
     fi
 
     # If this name is already defined in the environment, use that value
-    if [[ -v "${NAME}" ]]; then
+    if [[ -v ${NAME} ]]; then
         echo -n "${!NAME}"
         return
     fi
