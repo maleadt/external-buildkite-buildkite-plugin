@@ -87,7 +87,7 @@ function get_meta_env_value() {
     fi
 
     # If this name is already defined in the environment, use that value
-    if [[ -v "${!NAME}" ]]; then
+    if [[ -v ${!NAME} ]]; then
         echo -n "${!NAME}"
         return
     fi
@@ -97,6 +97,6 @@ function get_meta_env_value() {
         echo -n "${2}"
     else
         # If we don't have a default for this value, we terminate execution
-        die "No value supplied for ${NAME}"
+        die "No value supplied for ${NAME}: $(env)"
     fi
 }
